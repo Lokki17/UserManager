@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="usermanager.model.User" table="user1">
+        <id name="id" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="name" column="name" type="java.lang.String"/>
+        <property name="age" column="age" type="java.lang.Integer"/>
+        <property name="isAdmin" column="isAdmin" type="java.lang.Boolean" not-null="false"/>
+        <property name="createDate" column="createDate" type="java.util.Date"/>
+    </class>
+</hibernate-mapping>
