@@ -68,7 +68,8 @@
         <c:forEach items="${listUsers}" var="user">
             <tr>
                 <td>${user.id}</td>
-                <td><a href="/userdata/${user.id}" target="_blank">${user.name}</a></td>
+                <td><a href="/userdata/${user.id}" >${user.name}</a></td>
+                <%--<td><a href="/userdata/${user.id}" target="_blank">${user.name}</a></td>--%>
                 <td>${user.age}</td>
                 <td>${user.isAdmin}</td>
                 <td>${user.createDate}</td>
@@ -83,6 +84,7 @@
 <h1>Add a User</h1>
 
 <c:url var="addAction" value="/users/add"/>
+<c:url var="filterUsers" value="/users/filter"/>
 
 <form:form action="${addAction}" commandName="user">
     <table>
@@ -140,6 +142,23 @@
                            value="<spring:message text="Add User"/>"/>
                 </c:if>
             </td>
+        </tr>
+    </table>
+</form:form>
+
+<form:form action="${filterUsers}" commandName="user">
+    <table>
+        <tr>
+            <td>
+                <form:label path="name">
+                    <spring:message text="Name"/>
+                </form:label>
+            </td>
+            <td>
+                <form:input path="name"/>
+            </td>
+            <input type="submit"
+                   value="<spring:message text="Filter User by Name"/>"/>
         </tr>
     </table>
 </form:form>

@@ -5,9 +5,11 @@ import usermanager.dao.UserDaoImpl;
 
 public class Main {
     public static void main(String[] args) {
-        UserDao userDao = new UserDaoImpl();
+        String name = "Vania";
+        String s = "%";
+        String queryString = String.format("SELECT * FROM users where name like \"%s%s%s\"", s, name, s);
+        System.out.println(queryString);
 
-        System.out.println(userDao.getUser(1));
 
 
 /*        for (Object o : userDao.listUsers()){

@@ -14,4 +14,6 @@ public interface UserDao {
     public User getUser(int id);
 
     public List<User> listUsers();
+
+    public List<User> filterList(String name);
 }
