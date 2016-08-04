@@ -57,13 +57,13 @@
 
 <table class="tg">
   <tr>
-    <th width="80">ID</th>
-    <th width="120">Name</th>
-    <th width="120">Age</th>
-    <th width="120">IsAdmin</th>
-    <th width="120">CreateDate</th>
-    <th width="60">Edit</th>
-    <th width="60">Delete</th>
+    <th width="40">ID</th>
+    <th width="160">Name</th>
+    <th width="30">Age</th>
+    <th width="40">IsAdmin</th>
+    <th width="80">CreateDate</th>
+    <th width="30">Edit</th>
+    <th width="40">Delete</th>
   </tr>
   <tr>
     <td>${user.id}</td>

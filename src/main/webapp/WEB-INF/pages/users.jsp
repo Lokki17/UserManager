@@ -2,6 +2,8 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib prefix="from" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="calendar" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session="false" %>
 <html>
 <head>
@@ -57,22 +59,21 @@
 <c:if test="${!empty listUsers}">
     <table class="tg">
         <tr>
-            <th width="80">ID</th>
-            <th width="120">Name</th>
-            <th width="120">Age</th>
-            <th width="120">IsAdmin</th>
-            <th width="120">CreateDate</th>
-            <th width="60">Edit</th>
-            <th width="60">Delete</th>
+            <th width="40">ID</th>
+            <th width="160">Name</th>
+            <th width="30">Age</th>
+            <th width="40">IsAdmin</th>
+            <th width="80">CreateDate</th>
+            <th width="30">Edit</th>
+            <th width="40">Delete</th>
         </tr>
         <c:forEach items="${listUsers}" var="user">
             <tr>
                 <td>${user.id}</td>
                 <td><a href="/userdata/${user.id}" >${user.name}</a></td>
-                <%--<td><a href="/userdata/${user.id}" target="_blank">${user.name}</a></td>--%>
                 <td>${user.age}</td>
                 <td>${user.isAdmin}</td>
-                <td>${user.createDate}</td>
+                <td><calendar:formatDate  value="${user.createDate}" pattern="dd-MM-yyyy"/></td>
                 <td><a href="<c:url value='/edit/${user.id}'/>">Edit</a></td>
                 <td><a href="<c:url value='/remove/${user.id}'/>">Delete</a></td>
             </tr>

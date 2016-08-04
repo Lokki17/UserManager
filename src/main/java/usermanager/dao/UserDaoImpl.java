@@ -1,21 +1,17 @@
 package usermanager.dao;
 
-import org.springframework.web.bind.annotation.RequestParam;
 import usermanager.model.User;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class UserDaoImpl implements UserDao {
 
     private SessionFactory sessionFactory;
-
-    private int maxPageCount = 0;
 
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
@@ -27,12 +23,10 @@ public class UserDaoImpl implements UserDao {
         session.persist(user);
     }
 
-
     public void updateUser(User user) {
         Session session = this.sessionFactory.getCurrentSession();
         session.update(user);
     }
-
 
     public void removeUser(int id) {
         Session session = this.sessionFactory.getCurrentSession();
@@ -42,7 +36,6 @@ public class UserDaoImpl implements UserDao {
             session.delete(user);
         }
     }
-
 
     public User getUser(int id) {
         Session session = this.sessionFactory.getCurrentSession();
@@ -57,8 +50,6 @@ public class UserDaoImpl implements UserDao {
         SQLQuery query = session.createSQLQuery(queryString);
         query.addEntity(User.class);
         List<User> result = query.list();
-
-        this.maxPageCount = result.size() / 20;
 
         return result;
     }
