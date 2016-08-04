@@ -15,7 +15,6 @@ public class UserDaoImpl implements UserDao {
 
     private SessionFactory sessionFactory;
 
-    private int currentPage = 0;
     private int maxPageCount = 0;
 
     public void setSessionFactory(SessionFactory sessionFactory) {
@@ -59,7 +58,7 @@ public class UserDaoImpl implements UserDao {
         query.addEntity(User.class);
         List<User> result = query.list();
 
-        this.maxPageCount = result.size() / 2;
+        this.maxPageCount = result.size() / 20;
 
         return result;
     }

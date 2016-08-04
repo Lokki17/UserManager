@@ -99,6 +99,16 @@
             </td>
         </tr>
         <tr>
+            <td>
+                <form:label type="date" path="createDate">
+                    <spring:message text="createDate"/>
+                </form:label>
+            </td>
+            <td>
+                <form:input type="date" path="createDate"/>
+            </td>
+        </tr>
+        <tr>
             <input type="submit"
                    value="<spring:message text="Save User"/>"/>
         </tr>

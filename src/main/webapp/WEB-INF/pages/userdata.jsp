@@ -62,6 +62,8 @@
     <th width="120">Age</th>
     <th width="120">IsAdmin</th>
     <th width="120">CreateDate</th>
+    <th width="60">Edit</th>
+    <th width="60">Delete</th>
   </tr>
   <tr>
     <td>${user.id}</td>
@@ -69,6 +71,8 @@
     <td>${user.age}</td>
     <td>${user.isAdmin}</td>
     <td>${user.createDate}</td>
+    <td><a href="<c:url value='/editOneUser/${user.id}'/>">Edit</a></td>
+    <td><a href="<c:url value='/remove/${user.id}'/>">Delete</a></td>
   </tr>
 </table>
 </body>

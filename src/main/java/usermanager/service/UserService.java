@@ -5,15 +5,15 @@ import usermanager.model.User;
 import java.util.List;
 
 public interface UserService {
-    public void addUser(User user);
+    void addUser(User user);
 
-    public void updateUser(User user);
+    void updateUser(User user);
 
-    public void removeUser(int id);
+    void removeUser(int id);
 
-    public User getUser(int id);
+    User getUser(int id);
 
-    public List<User> listUsers();
+    List<User> listUsers();
 
-    public List<User> filterList(String name);
+    List<User> filterList(String name);
 }

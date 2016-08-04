@@ -132,6 +132,16 @@
             </td>
         </tr>
         <tr>
+            <td>
+                <form:label type="date" path="createDate">
+                    <spring:message text="createDate"/>
+                </form:label>
+            </td>
+            <td>
+                <form:input type="date" path="createDate"/>
+            </td>
+        </tr>
+        <tr>
             <td colspan="2">
                 <c:if test="${!empty user.name}">
                     <input type="submit"

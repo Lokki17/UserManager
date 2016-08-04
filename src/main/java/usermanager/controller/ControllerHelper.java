@@ -27,12 +27,6 @@ public class ControllerHelper {
 
         }
 
-        System.out.println("currentPage = " + current);
-        System.out.println("current = " + current);
-        System.out.println("next = " + next);
-        System.out.println("result.size = " + list.subList(current, next).size());
-        System.out.println();
-
         return list.subList(current, next);
     }
 }

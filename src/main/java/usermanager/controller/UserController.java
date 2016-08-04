@@ -15,9 +15,7 @@ import java.util.List;
 public class UserController {
     private UserService userService;
 
-    //private int currentPage = 0;
     private int currentPage = 0;
-    //private int pageLenght = 10;
     private int maxLenght;
 
     @Autowired(required = true)
@@ -31,31 +29,8 @@ public class UserController {
     public String listUsers(Model model) {
         List<User> list = this.userService.listUsers();
         this.maxLenght = list.size();
-/*        int current = 0, next = pageLenght;
-        this.maxLenght = list.size();
-        if (currentPage * pageLenght >= maxLenght) {
-            current = maxLenght - maxLenght % pageLenght;
-            next = maxLenght;
-        } else {
-            current = currentPage * pageLenght;
-        }
-        if (current + pageLenght > maxLenght) {
-            next = maxLenght;
-        } else {
-            next = current + pageLenght;
-
-        }
-
-        List<User> result = list.subList(current, next);
-        */
-
 
         List<User> result = ControllerHelper.getSubList(list, currentPage);
-/*        System.out.println("currentPage = " + currentPage);
-        System.out.println("current = " + current);
-        System.out.println("next = " + next);
-        System.out.println("result.size = " + result.size());
-        System.out.println();*/
 
         model.addAttribute("user", new User());
         model.addAttribute("listUsers", result);

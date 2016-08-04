@@ -1,6 +1,10 @@
 package usermanager.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -21,6 +25,7 @@ public class User {
     private Boolean isAdmin = false;
 
     @Column(name = "CREATED_DATE")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createDate;
 
     public int getId() {
