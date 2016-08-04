@@ -1,0 +1,38 @@
+package usermanager.controller;
+
+import usermanager.model.User;
+
+import java.util.List;
+
+public class ControllerHelper {
+
+    static final int PAGE_LENGHT = 10;
+
+    public static List<User> getSubList(List<User> list, int currentPage){
+
+        int maxLenght = list.size();
+        int current;
+        int next;
+
+        if (currentPage * PAGE_LENGHT >= maxLenght) {
+            current = maxLenght - maxLenght % PAGE_LENGHT;
+            next = maxLenght;
+        } else {
+            current = currentPage * PAGE_LENGHT;
+        }
+        if (current + PAGE_LENGHT > maxLenght) {
+            next = maxLenght;
+        } else {
+            next = current + PAGE_LENGHT;
+
+        }
+
+        System.out.println("currentPage = " + current);
+        System.out.println("current = " + current);
+        System.out.println("next = " + next);
+        System.out.println("result.size = " + list.subList(current, next).size());
+        System.out.println();
+
+        return list.subList(current, next);
+    }
+}

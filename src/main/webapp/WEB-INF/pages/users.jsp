@@ -135,7 +135,7 @@
             <td colspan="2">
                 <c:if test="${!empty user.name}">
                     <input type="submit"
-                           value="<spring:message text="Edit User"/>"/>
+                           value="<spring:message text="Save info"/>"/>
                 </c:if>
                 <c:if test="${empty user.name}">
                     <input type="submit"
@@ -162,5 +162,9 @@
         </tr>
     </table>
 </form:form>
+
+<td><a href="<c:url value='users/prevUserPage'/>">Previous Page</a></td>
+&nbsp;
+<td><a href="<c:url value='users/nextUserPage'/>">Next Page</a></td>
 </body>
 </html>

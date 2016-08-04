@@ -9,9 +9,16 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
+import java.util.List;
+
 @Controller
 public class UserController {
     private UserService userService;
+
+    //private int currentPage = 0;
+    private int currentPage = 0;
+    //private int pageLenght = 10;
+    private int maxLenght;
 
     @Autowired(required = true)
     @Qualifier(value = "userService")
@@ -20,9 +27,38 @@ public class UserController {
     }
 
     @RequestMapping(value = "users", method = RequestMethod.GET)
+    @Transactional
     public String listUsers(Model model) {
+        List<User> list = this.userService.listUsers();
+        this.maxLenght = list.size();
+/*        int current = 0, next = pageLenght;
+        this.maxLenght = list.size();
+        if (currentPage * pageLenght >= maxLenght) {
+            current = maxLenght - maxLenght % pageLenght;
+            next = maxLenght;
+        } else {
+            current = currentPage * pageLenght;
+        }
+        if (current + pageLenght > maxLenght) {
+            next = maxLenght;
+        } else {
+            next = current + pageLenght;
+
+        }
+
+        List<User> result = list.subList(current, next);
+        */
+
+
+        List<User> result = ControllerHelper.getSubList(list, currentPage);
+/*        System.out.println("currentPage = " + currentPage);
+        System.out.println("current = " + current);
+        System.out.println("next = " + next);
+        System.out.println("result.size = " + result.size());
+        System.out.println();*/
+
         model.addAttribute("user", new User());
-        model.addAttribute("listUsers", this.userService.listUsers());
+        model.addAttribute("listUsers", result);
 
         return "users";
     }
@@ -48,7 +84,8 @@ public class UserController {
     @RequestMapping("edit/{id}")
     public String editUser(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", this.userService.getUser(id));
-        model.addAttribute("listUsers", this.userService.listUsers());
+        List<User> list = ControllerHelper.getSubList(this.userService.listUsers(), currentPage);
+        model.addAttribute("listUsers", list);
 
         return "users";
     }
@@ -70,12 +107,30 @@ public class UserController {
     }
 
     @RequestMapping(value = "editOneUser/{id}")
+    @Transactional
     public String edtiOneUser(@PathVariable("id") int id, Model model) {
         User user = this.userService.getUser(id);
-        //model.addAttribute("user", this.userService.getUser(id));
         model.addAttribute("user", user);
-/*        model.addAttribute("listUsers", this.userService.listUsers());*/
 
         return "edtiUser";
+    }
+
+    @RequestMapping(value = "users/nextUserPage")
+    @Transactional
+    public String nextUserPage() {
+        int pageLenght = ControllerHelper.PAGE_LENGHT;
+        if (currentPage * pageLenght < maxLenght - pageLenght) {
+            currentPage++;
+        }
+        return "redirect:/users";
+    }
+
+    @RequestMapping(value = "users/prevUserPage")
+    @Transactional
+    public String prevUserPage() {
+        if (currentPage > 0) {
+            currentPage--;
+        }
+        return "redirect:/users";
     }
 }

@@ -15,6 +15,9 @@ public class UserDaoImpl implements UserDao {
 
     private SessionFactory sessionFactory;
 
+    private int currentPage = 0;
+    private int maxPageCount = 0;
+
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
@@ -36,14 +39,14 @@ public class UserDaoImpl implements UserDao {
         Session session = this.sessionFactory.getCurrentSession();
         User user = (User) session.get(User.class, new Integer(id));
 
-        if(user !=null){
+        if (user != null) {
             session.delete(user);
         }
     }
 
 
     public User getUser(int id) {
-        Session session =this.sessionFactory.getCurrentSession();
+        Session session = this.sessionFactory.getCurrentSession();
         User user = (User) session.get(User.class, new Integer(id));
 
         return user;
@@ -55,6 +58,8 @@ public class UserDaoImpl implements UserDao {
         SQLQuery query = session.createSQLQuery(queryString);
         query.addEntity(User.class);
         List<User> result = query.list();
+
+        this.maxPageCount = result.size() / 2;
 
         return result;
     }

@@ -7,7 +7,7 @@
 <body>
 <h3>Users</h3>
 <br/>
-<a href="<c:url value="users"/>" target="_blank">Get Users List</a>
+<a href="<c:url value="users"/>" >Get Users List</a>
 <br/>
 </body>
 </html>
